@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var webpackConfig = {
     resolve: {
@@ -38,7 +39,11 @@ var webpackConfig = {
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'static' }
+        ])
+
     ],
     devtool: 'eval'
 };
