@@ -12,5 +12,12 @@ export default {
         page: 'about',
         title: 'About',
         handler: require('../components/About')
+    },
+    navigate: {
+        path: '/navigate',
+        method: 'get',
+        page: 'navigate',
+        title: 'Navigate',
+        handler: require('../components/Navigate')
     }
-};
+}; 

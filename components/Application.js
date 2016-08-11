@@ -1,10 +1,9 @@
 /*globals document*/
 
 import React from 'react';
-import Nav from './Nav';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
-import { handleHistory } from 'fluxible-router';
+import { handleHistory, NavLink } from 'fluxible-router';
 import pages from '../configs/routes';
 
 class Application extends React.Component {
@@ -13,7 +12,9 @@ class Application extends React.Component {
 
         return (
             <div>
-                <Nav currentRoute={this.props.currentRoute} links={pages} />
+                <NavLink routeName="navigate">
+                    <img src="/public/images/well.png" />
+                </NavLink>
                 <Handler />
             </div>
         );
