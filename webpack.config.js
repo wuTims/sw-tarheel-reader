@@ -12,8 +12,8 @@ var webpackConfig = {
         './client.js'
     ],
     output: {
-        path: path.resolve('./build/js'),
-        publicPath: '/public/js/',
+        path: path.resolve('./build'),
+        publicPath: '/public/',
         filename: 'main.js'
     },
     module: {
@@ -26,7 +26,9 @@ var webpackConfig = {
                     require.resolve('babel-loader')
                 ]
             },
-            { test: /\.json$/, loader: 'json-loader'}
+            { test: /\.json$/, loader: 'json-loader'},
+            { test: /\.scss$/, loaders: ["style", "css", "sass"]},
+            { test: /.(png|jpg)$/, loader: 'file-loader?name=images/[name].[ext]' }
         ]
     },
     node: {
@@ -37,7 +39,8 @@ var webpackConfig = {
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+                BROWSER: JSON.stringify(true)
             }
         }),
         new CopyWebpackPlugin([
