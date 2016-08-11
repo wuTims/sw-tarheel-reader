@@ -1,33 +1,59 @@
 import React from 'react';
-import { NavLink } from 'fluxible-router';
+import { NavLink, navigateAction } from 'fluxible-router';
+import { Wrapper, Button, Menu, MenuItem } from 'react-aria-menubutton';
+
+if (process.env.BROWSER) {
+    require('../css/menuStyle.scss');
+}
 
 class Nav extends React.Component {
+
     render() {
         const selected = this.props.currentRoute;
         const links = this.props.links;
 
-        const linkHTML = Object.keys(links).map((name) => {
-            var className = '';
+        const linkHTML = Object.keys(links).map((name, i) => {
             var link = links[name];
-
-            if (selected && selected.name === name) {
-                className = 'pure-menu-selected';
-            }
-
+            console.log('i', i);
             return (
-                <li className={className} key={link.path}>
-                    <NavLink routeName={link.page} activeStyle={{backgroundColor: '#eee'}}>{link.title}</NavLink>
-                </li>
+                <MenuItem 
+                    className='AriaMenuButton-menuItem'
+                    tag='li'
+                    value={link.path}
+                    key={i}>
+                {link.title}
+                </MenuItem>
             );
         });
 
+        var cb = this.handleSelection.bind(this);
         return (
-            <ul className="pure-menu pure-menu-open pure-menu-horizontal">
-                {linkHTML}
-            </ul>
+            <Wrapper className='AriaMenuButton' onSelection={cb}>
+                <Button className='AriaMenuButton-trigger'>
+                    <img src="/public/images/well.png" />
+                </Button>
+                <Menu>
+                    <ul className='AriaMenuButton-menu'>{linkHTML}</ul>
+                </Menu>
+            </Wrapper>
         );
     }
+
+    handleSelection(value, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log('select', value, event);
+        this.context.executeAction(navigateAction, {
+            method: 'GET',
+            url: value });
+        console.log('after');
+    }
 }
+
+Nav.contextTypes = {
+    getStore:      React.PropTypes.func.isRequired,
+    executeAction: React.PropTypes.func.isRequired
+};
 
 Nav.defaultProps = {
     selected: null,
