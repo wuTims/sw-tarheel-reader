@@ -13,7 +13,8 @@ class Application extends React.Component {
         return (
             <div>
                 <NavLink routeName="_navigate">
-                    <img src="/public/images/well.png" />
+                    <img src="/public/images/well.png"
+                     style={{width: '2em', height: '2em'}}/>
                 </NavLink>
                 <Handler />
             </div>
