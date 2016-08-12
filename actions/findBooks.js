@@ -1,8 +1,13 @@
-var books = require('../dummy/books.json');
-
 module.exports = function (context, payload, callback) {
-    context.dispatch('BOOKS_RECEIVED', {
-        books: books
+    context.service.read('books', {}, {}, function(err, books) {
+        console.log('serice.read resp', err, books);
+        if (err) {
+            callback(err);
+        } else {
+            context.dispatch('BOOKS_RECEIVED', {
+            books: books
+            });
+            callback();
+        }
     });
-    callback();
 };

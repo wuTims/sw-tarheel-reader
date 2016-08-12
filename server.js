@@ -21,10 +21,18 @@ const env = process.env.NODE_ENV;
 
 const debug = debugLib('newthr');
 
+
 const server = express();
 server.use('/public', express['static'](path.join(__dirname, '/build')));
 server.use(compression());
 server.use(bodyParser.json());
+
+// Get access to the fetchr plugin instance
+var fetchrPlugin = app.getPlugin('FetchrPlugin');
+// Register our messages REST service
+fetchrPlugin.registerService(require('./services/findService'));
+// Set up the fetchr middleware
+server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 
 server.use((req, res, next) => {
     const context = app.createContext();
