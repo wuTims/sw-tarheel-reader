@@ -5,8 +5,8 @@ import links from '../configs/routes';
 class Navigate extends React.Component {
     render() {
         const linkHTML = Object.keys(links)
-            .filter((name) => { return name != 'navigate'})
-            .map((name) => {
+            .filter(name => name.substr(0, 1) !== '_')
+            .map(name => {
                 var link = links[name];
                 return (
                     <li key={link.path}>
@@ -19,7 +19,7 @@ class Navigate extends React.Component {
 
         return (
             <div>
-                <ul className='THR-menu'>{linkHTML}</ul>
+                <ul className='navigate'>{linkHTML}</ul>
             </div>
         );
     }

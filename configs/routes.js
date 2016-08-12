@@ -13,11 +13,11 @@ export default {
         title: 'About',
         handler: require('../components/About')
     },
-    navigate: {
+    _navigate: {
         path: '/navigate',
         method: 'get',
         page: 'navigate',
         title: 'Navigate',
         handler: require('../components/Navigate')
     }
-}; 
+};

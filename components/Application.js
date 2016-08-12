@@ -12,7 +12,7 @@ class Application extends React.Component {
 
         return (
             <div>
-                <NavLink routeName="navigate">
+                <NavLink routeName="_navigate">
                     <img src="/public/images/well.png" />
                 </NavLink>
                 <Handler />
