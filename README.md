@@ -6,4 +6,4 @@ fluxible.
 
 I started with the fluxible template.
 
-My goal is a [progressive web app](https://developers.google.com/web/progressive-web-apps/) that is accessible, multi-lingual, and compatible with old browsers and works even with with javascript disabled.
+My goal is a [progressive web app](https://developers.google.com/web/progressive-web-apps/) that is accessible, multi-lingual, compatible with old browsers and works even with with javascript disabled.
