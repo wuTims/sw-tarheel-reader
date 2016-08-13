@@ -9,7 +9,7 @@ new WebpackDevServer(webpack(config), {
     historyApiFallback: true,
     //quiet: true,
     proxy: {
-        '/api': { target: 'http://localhost:3001' }
+        '*': { target: 'http://localhost:3001' }
     }
 }).listen(3000, function () {
     shell.env.PORT = shell.env.PORT || 3001;
