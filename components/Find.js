@@ -1,6 +1,6 @@
-var React = require('react');
-var connectToStores = require("fluxible-addons-react").connectToStores;
-var BookStore = require('../stores/BookStore');
+import React from 'react';
+import { connectToStores } from 'fluxible-addons-react';
+import BookStore from '../stores/BookStore';
 
 var Find = React.createClass({
     render() {

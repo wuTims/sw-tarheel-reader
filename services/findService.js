@@ -1,4 +1,4 @@
-var books = require('../dummy/books.json');
+import fetch from 'node-fetch';
 
 var fetch = require('node-fetch');
 

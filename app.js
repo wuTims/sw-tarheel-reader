@@ -4,7 +4,7 @@ import ApplicationStore from './stores/ApplicationStore';
 import RouteStore from './stores/RouteStore';
 import BookStore from './stores/BookStore';
 
-var fetchr = require('fluxible-plugin-fetchr');
+import fetchr from 'fluxible-plugin-fetchr';
 var fetchrInstance = fetchr({
     xhrPath: '/api'
 });
