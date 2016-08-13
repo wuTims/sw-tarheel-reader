@@ -1,6 +1,13 @@
 import fetch from 'node-fetch';
 
-var fetch = require('node-fetch');
+function fixupTHRfind(json) {
+    return json.books.map(book => {
+        book.rating = parseFloat(book.rating.text);
+        delete book.tags;
+        delete book.categories;
+        return book;
+    });
+}
 
 module.exports = {
     name: "books",
@@ -10,7 +17,7 @@ module.exports = {
         fetch('http://tarheelreader.org/find/?json=1')
             .then(res => res.json())
             .then(json => {
-                callback(null, json.books);
-            });
+                callback(null, fixupTHRfind(json));
+            })
     }
 }
