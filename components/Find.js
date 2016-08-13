@@ -6,7 +6,6 @@ var Find = React.createClass({
     render() {
         return (
             <div>
-                <h2>Some books</h2>
                 {
                     this.props.books.map(function(book) {
                         return (
