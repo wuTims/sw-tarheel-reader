@@ -2,10 +2,10 @@ import fetch from 'node-fetch';
 import queryString from 'query-string';
 
 function fixupTHRfind(json) {
-    return json.books.map(book => {
-        book.rating = parseFloat(book.rating.text);
-        delete book.tags;
-        delete book.categories;
+    console.log('fix', json);
+    return json.map(book => {
+        book = Object.assign({}, book);
+        book.title = book.title.rendered;
         return book;
     });
 }
@@ -15,15 +15,15 @@ module.exports = {
     read: function(req, resource, params, config, callback) {
         // fetch books from THR
         // how to pass parameters?
-        var url = 'http://tarheelreader.org/find/?json=1';
+        var url = 'http://localhost:8000/wp-json/wp/v2/posts/?categories=3';
         var qs = queryString.stringify(params);
         if (qs) {
             url = url + '&' + qs;
         }
-        console.log('q', qs);
         fetch(url)
             .then(res => res.json())
             .then(json => {
+                console.log('json', json);
                 callback(null, fixupTHRfind(json));
             })
     }

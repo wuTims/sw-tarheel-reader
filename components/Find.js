@@ -8,7 +8,7 @@ var Find = React.createClass({
     render() {
         var q = Object.assign({}, this.props.currentRoute.query);
         q.page = 'page' in q ? parseInt(q.page) + 1 : 2;
-        console.log('q', q);
+        console.log('books', this.props.books);
         var qs = queryString.stringify(q);
         return (
             <div>
@@ -16,7 +16,7 @@ var Find = React.createClass({
                 {
                     this.props.books.map(function(book) {
                         return (
-                            <li key={book.ID}>{book.title}</li>
+                            <li key={book.id}>{book.title}</li>
                         )
                     })
                 }
