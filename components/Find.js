@@ -17,12 +17,15 @@ class Find extends React.Component {
         var qs = queryString.stringify(q);
         return (
             <div>
-                <ul>
+                <ul className="booklist">
                 {
                     this.props.books.map((book, i) => {
-                        var c = i == this.props.selected ? 'selected' : '';
+                        var cn = ['booklist__item'];
+                        if (i === this.props.selected) {
+                           cn.push( 'booklist__item--selected');
+                        }
                         return (
-                            <li key={book.id} className={c}>{book.title}</li>
+                            <li key={book.id} className={cn.join(' ')}>{book.title}</li>
                         )
                     })
                 }
