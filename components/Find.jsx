@@ -25,7 +25,9 @@ class Find extends React.Component {
                            cn.push( 'booklist__item--selected');
                         }
                         return (
-                            <li key={book.id} className={cn.join(' ')}>{book.title}</li>
+                            <li key={book.id} className={cn.join(' ')}>
+                                {book.title}
+                            </li>
                         )
                     })
                 }
