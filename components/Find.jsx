@@ -37,9 +37,8 @@ class Find extends React.Component {
         );
     }
 
-    @keydown('enter')
+    @keydown('right','space')
     handleNext() {
-        console.log('here');
         this.context.executeAction(selectNext, {});
     }
 };

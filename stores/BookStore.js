@@ -4,7 +4,7 @@ class BookStore extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
         this.books = [];
-        this.selected = 1;
+        this.selected = -1;
     }
     handleBooksReceived(payload) {
         this.books = payload.books;
