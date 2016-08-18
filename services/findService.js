@@ -1,11 +1,26 @@
 import fetch from 'node-fetch';
 import queryString from 'query-string';
 
+var fields_to_delete = [
+    'links',
+    'date_gmt',
+    'guid',
+    'modified_gmt',
+    'type',
+    'content',
+    'excerpt',
+    'featured_media',
+    'comment_status',
+    'ping_status',
+    'sticky',
+    'format',
+    '_links'
+];
+
 function fixupTHRfind(json) {
-    console.log('fix', json);
     return json.map(book => {
         book = Object.assign({}, book);
-        book.title = book.title.rendered;
+        fields_to_delete.map(field => { delete book[field]; })
         return book;
     });
 }
@@ -23,7 +38,6 @@ module.exports = {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                console.log('json', json);
                 callback(null, fixupTHRfind(json));
             })
     }

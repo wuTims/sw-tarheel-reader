@@ -8,50 +8,31 @@ function slug_update_post_meta_cb( $value, $object, $field_name ) {
     return update_post_meta( $object->ID, $field_name, $value );
 }
 
-function get_content_cb( $object, $field_name, $request ) {
+function get_text_cb( $object, $field_name, $request ) {
     $c = get_post_field( 'post_content', $object[ 'id' ], 'raw' );
+    //$c = html_entity_decode($c, $flags=ENT_COMPAT|ENT_HTML401, 'utf-8');
     $pages = array_map(trim, explode("<!--more-->", $c));
     return $pages;
 }
 
-function update_content_cb( $value, $object, $field_name ) {
-    $content = implode('<!--more-->', $value);
+function update_text_cb( $value, $object, $field_name ) {
+    $content = implode("\n<!--more-->\n", $value);
     wp_update_post(array(
         'ID' => $object->ID,
         'post_content' => $content
     ));
 }
 
-function get_pages_cb( $object, $field_name, $request ) {
-    $c = get_post_field( 'post_content', $object[ 'id' ], 'raw' );
-    $captions = array_slice(array_map(trim, explode("<!--more-->", $c)), 1);
-    $images = get_post_meta( $object['id'], 'images', true);
-    $pages = array_map(function($caption, $image) { return array('caption'=>$caption, 'image'=>$image); }, $captions, $images);
-    return $pages;
-}
-
-function update_pages_cb( $value, $post, $field_name ) {
-    $captions = array();
-    $images = array();
-    foreach($value as $v) {
-        $captions[] = $v['caption'];
-        $images[] = $v['image'];
-    }
-    $title = $post->post_title;
-    $author = get_post_meta( $post->ID, 'pseudonym', true);
-    array_unshift($captions, $title . ' ' . $author);
-    $content = implode("\n<!--more-->\n", $captions);
-    wp_update_post(array(
-        'ID' => $post->ID,
-        'post_content' => $content
-    ));
-    update_post_meta( $post->ID, 'images', $images);
+function get_title_cb( $object, $field_name, $request ) {
+    $c = get_the_title( $object['id'] );
+    $c = html_entity_decode($c, $flags=ENT_COMPAT|ENT_HTML401, 'utf-8');
+    return $c;
 }
 
 add_action( 'rest_api_init', function() {
     $fields = array(
         'audience',
-        'images',
+        'pictures',
         'language',
         'pseudonym',
         'rating_count',
@@ -69,10 +50,19 @@ add_action( 'rest_api_init', function() {
          );
     }
     register_api_field( 'post',
-        'content',
+        'text',
         array(
-            'get_callback' => 'get_pages_cb',
-            'update_callback' => 'update_pages_cb',
+            'get_callback' => 'get_text_cb',
+            'update_callback' => 'update_text_cb',
+            'schema' => null,
+        )
+    );
+
+    register_api_field( 'post',
+        'title',
+        array(
+            'get_callback' => 'get_title_cb',
+            'update_callback' => null,
             'schema' => null,
         )
     );
