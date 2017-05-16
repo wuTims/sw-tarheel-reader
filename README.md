@@ -16,7 +16,7 @@ Ideas and things to do:
 ## Project Features/Current Progress - Spring 2017
 
 ### isomorphic rendering (not part of current project)
-	- Github link: [old repository](https://github.com/wuTims/tarheel-reader)
+   - Github link: [old repository](https://github.com/wuTims/tarheel-reader)
 	- Borrowed template from github repo: [isomorphic-500](https://github.com/gpbl/isomorphic500)
 		- Essentially used isomorphic500 as base and inserted NewTHR components into it
 	- Render page even if Javascript is disabled
@@ -26,7 +26,7 @@ Ideas and things to do:
 
 
 ### handle held key presses (not part of current project)
-	- Github link: [demo](https://github.com/wuTims/tarheel-reader/blob/master/src/components/About.jsx)
+ - Github link: [demo](https://github.com/wuTims/tarheel-reader/blob/master/src/components/About.jsx)
 	- Used npm package 'react-key-handler'
 	- Custom React component that accepts properties to handle key events
 	- Only implemented small action as proof-of-concept 
@@ -34,7 +34,7 @@ Ideas and things to do:
 
 
 ### service worker (current project)
-	- Followed Google's 'First PWA' tutorial for setting up service worker
+   - Followed Google's 'First PWA' tutorial for setting up service worker
 		- Link: [First PWA Tutorial](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
 		- Recommends using 'sw-precache' package
 	- Used to help cache application shell
@@ -51,7 +51,7 @@ Ideas and things to do:
 
 
 ### cacheing/local storage (current project)
-	- Still following Google's 'First PWA' tutorial
+   - Still following Google's 'First PWA' tutorial
 		- Recommends using 'idb' package
         - Attempted using [idb-wrapper](https://github.com/jensarps/IDBWrapper)
 	- Used to store the files/data that may be needed for offline use
