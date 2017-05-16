@@ -13,9 +13,9 @@ Ideas and things to do:
 3. In order to make pages cacheable we'd need to put all the state in the URL. This wouldn't be so bad except for the list of favorites. It seems wrong to share a book URL and have it share the favorites also. Perhaps the favorites live in the cookie? I could proxy cache on the server and include the cookie content in the cache key. This helps take load off the server. Over the last year the longest favorites list were also 250 books long! Carry that in all the URLs would be crazy. 
 4. Does caching even matter? Try to estimate how many current THR users visit without js and how many we might serve in the future. About 3.4% of our non-bot ips over the last year had javascript disabled. So caching to help the site hardly matters but it might help the poor user out there on the end of a terrible connection.
 
-Project Features/Current Progress - Spring 2017
+## Project Features/Current Progress - Spring 2017
 
-isomorphic rendering (not part of current project)
+### isomorphic rendering (not part of current project)
 	- Github link: [old repository](https://github.com/wuTims/tarheel-reader)
 	- Borrowed template from github repo: [isomorphic-500](https://github.com/gpbl/isomorphic500)
 		- Essentially used isomorphic500 as base and inserted NewTHR components into it
@@ -25,7 +25,7 @@ isomorphic rendering (not part of current project)
 			- The few requests that did were outliers/strange	
 
 
-handle held key presses (not part of current project)
+### handle held key presses (not part of current project)
 	- Github link: [demo](https://github.com/wuTims/tarheel-reader/blob/master/src/components/About.jsx)
 	- Used npm package 'react-key-handler'
 	- Custom React component that accepts properties to handle key events
@@ -33,7 +33,7 @@ handle held key presses (not part of current project)
 	- Prevents held key-down from continuously firing events
 
 
-service worker (current project)
+### service worker (current project)
 	- Followed Google's 'First PWA' tutorial for setting up service worker
 		- Link: [First PWA Tutorial](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
 		- Recommends using 'sw-precache' package
@@ -50,9 +50,10 @@ service worker (current project)
 
 
 
-cacheing/local storage (current project)
+### cacheing/local storage (current project)
 	- Still following Google's 'First PWA' tutorial
 		- Recommends using 'idb' package
+        - Attempted using [idb-wrapper](https://github.com/jensarps/IDBWrapper)
 	- Used to store the files/data that may be needed for offline use
 		- Store books/json data that can be loaded from cache
 	- 'Find.jsx'
