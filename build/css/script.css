@@ -1,0 +1,11 @@
+.js {
+    display: initial;
+}
+
+.no-js {
+    display: none;
+}
+
+.booklist__item--selected {
+    background-color: yellow;
+}

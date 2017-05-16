@@ -6,15 +6,33 @@ import queryString from 'query-string';
 import keydown from 'react-keydown';
 import selectNext from '../actions/selectNext';
 
+
 class Find extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            books: this.props.books
+        };
+    }
+
+    componentDidMount() {
+        if(typeof window !== 'undefined'){
+            // var idbStorage = require('../services/bookDBService');
+            // idbStorage.storeBooks(this.props.books);
+            // console.log(this.props.books);
+            // console.log(this.props.books);
+            // localStorage.books = this.props.books;
+            localStorage.books = this.state.books;
+        }
     }
 
     render() {
+        var base_url = "http://test.tarheelreader.org";
         var q = Object.assign({}, this.props.currentRoute.query);
         q.page = 'page' in q ? parseInt(q.page) + 1 : 2;
         var qs = queryString.stringify(q);
+
         return (
             <div>
                 <ul className="booklist">
@@ -24,9 +42,12 @@ class Find extends React.Component {
                         if (i === this.props.selected) {
                            cn.push( 'booklist__item--selected');
                         }
+                        // console.log(book);
                         return (
-                            <li key={book.id} className={cn.join(' ')}>
-                                {book.title}
+                            <li key={book.ID} className={cn.join(' ')}>
+                                <NavLink href={base_url+book.link}>{book.title}</NavLink>
+                                <p className="thr-author">{book.author}</p>
+                                <img src={base_url+book.cover.url} alt=""/>
                             </li>
                         )
                     })
@@ -52,6 +73,7 @@ module.exports = connectToStores(
     Find,
     [BookStore],
     function(context, props) {
+        // localStorage.books = context.getStore(BookStore).findBooks();
         return {
             books: context.getStore(BookStore).findBooks(),
             selected: context.getStore(BookStore).getSelected()

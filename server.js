@@ -24,6 +24,7 @@ const debug = debugLib('newthr');
 
 const server = express();
 server.use('/public', express['static'](path.join(__dirname, '/build')));
+server.use('/service-worker', express['static'](path.join(__dirname, '/sw')));
 server.use(compression());
 server.use(bodyParser.json());
 

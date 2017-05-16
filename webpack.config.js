@@ -7,7 +7,7 @@ var webpackConfig = {
         extensions: ['', '.js', '.jsx']
     },
     entry: [
-        'webpack-dev-server/client?http://localhost:3000',
+        'webpack-dev-server/client?http://127.0.0.0:8080',
         'webpack/hot/only-dev-server',
         './client.js'
     ],

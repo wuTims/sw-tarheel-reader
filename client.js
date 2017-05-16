@@ -16,6 +16,8 @@ window.fluxibleDebug = debug;
 
 debugClient('rehydrating app');
 
+
+
 // pass in the dehydrated server state from server.js
 app.rehydrate(dehydratedState, (err, context) => {
     if (err) {

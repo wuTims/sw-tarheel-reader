@@ -1,5 +1,5 @@
 import Fluxible from 'fluxible';
-import Application from './components/Application';
+import Application from './components/Application.jsx';
 import ApplicationStore from './stores/ApplicationStore';
 import RouteStore from './stores/RouteStore';
 import BookStore from './stores/BookStore';
@@ -20,5 +20,7 @@ app.plug(fetchrInstance);
 app.registerStore(RouteStore);
 app.registerStore(ApplicationStore);
 app.registerStore(BookStore);
+
+
 
 module.exports = app;
