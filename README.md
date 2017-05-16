@@ -16,8 +16,8 @@ Ideas and things to do:
 Project Features/Current Progress - Spring 2017
 
 isomorphic rendering (not part of current project)
-	- Github link: 
-	- Borrowed template from github repo: [isomorphic-500](https://github.com/wuTims/tarheel-reader)
+	- Github link: [old repository](https://github.com/wuTims/tarheel-reader)
+	- Borrowed template from github repo: [isomorphic-500](https://github.com/gpbl/isomorphic500)
 		- Essentially used isomorphic500 as base and inserted NewTHR components into it
 	- Render page even if Javascript is disabled
 	- Decided by Professor Bishop that no longer needed
